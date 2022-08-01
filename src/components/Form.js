@@ -1,8 +1,5 @@
 import React, { useRef, useState } from 'react';
 
-const BASE_URL = 'https://api.spoonacular.com/food/wine/';
-const API_KEY = process.env.REACT_APP_API_KEY;
-
 const Form = ({ searchByFood }) => {
   const [pairings, setPairings] = useState([]);
   const [pairingText, setPairingText] = useState('');
@@ -24,11 +21,19 @@ const Form = ({ searchByFood }) => {
         );
       const data = await fetch(
         searchByFood
-          ? `${BASE_URL}pairing/?apiKey=${API_KEY}&food=${query}`
-          : `${BASE_URL}dishes/?apiKey=${API_KEY}&wine=${query}`
+          ? `/.netlify/functions/fetch-pairings?food=${query}`
+          : `/.netlify/functions/fetch-pairings?wine=${query}`
       );
-      if (!data) throw new Error('Something went wrong!');
-      const response = await data.json();
+
+      if (data.status === 400) {
+        const response = await data.json();
+        throw new Error(response.body.message);
+      }
+
+      if (!data.ok) {
+        throw new Error('Something went wrong!');
+      }
+      const { data: response } = await data.json();
       if (response.status === 'failure') {
         e.target.reset();
         throw new Error(response.message);
@@ -45,7 +50,7 @@ const Form = ({ searchByFood }) => {
         pairingsArray = pairings;
         textString = text;
       }
-      if (pairingsArray.length === 0 || textString === '') {
+      if (pairingsArray.length === 0 && textString === '') {
         e.target.reset();
         throw new Error(
           `Cannot not find any match for ${query}. Try something else!`
