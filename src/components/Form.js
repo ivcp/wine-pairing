@@ -1,18 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
-const Form = ({ searchByFood }) => {
-  const [pairings, setPairings] = useState([]);
-  const [pairingText, setPairingText] = useState('');
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const inputText = useRef(null);
+const Form = ({
+  searchByFood,
+  setIsLoading,
+  setPairings,
+  setPairingText,
+  setError,
+  setErrorMessage
+}) => {
+  const textInput = useRef(null);
 
   const handleSubmit = async e => {
     e.preventDefault();
+
     try {
       setIsLoading(true);
-      const query = inputText.current.value;
+      const query = textInput.current.value.trim();
       if (query === '')
         throw new Error(
           searchByFood
@@ -21,8 +24,8 @@ const Form = ({ searchByFood }) => {
         );
       const data = await fetch(
         searchByFood
-          ? `/.netlify/functions/fetch-pairings?food=${query}`
-          : `/.netlify/functions/fetch-pairings?wine=${query}`
+          ? `/.netlify/functions/fetch-pairings?type=food-pairing&food=${query}`
+          : `/.netlify/functions/fetch-pairings?type=wine-pairing&wine=${query}`
       );
 
       if (data.status === 400) {
@@ -69,32 +72,17 @@ const Form = ({ searchByFood }) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          ref={inputText}
-          type="text"
-          name=""
-          id="input"
-          placeholder={
-            searchByFood ? "What's for dinner?" : 'What are we drinking?'
-          }
-        />
-        <button type="submit">Search</button>
-      </form>
-      <div>
-        {!error && pairings.length > 0 && (
-          <ul>
-            {pairings.map(pairing => (
-              <li key={pairing}>{pairing}</li>
-            ))}
-          </ul>
-        )}
-        {!error && pairingText !== '' && <p>{pairingText}</p>}
-        {error && !isLoading && <p>{errorMessage}</p>}
-        {isLoading && <p>Loading...</p>}
-      </div>
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        ref={textInput}
+        type="text"
+        id="input"
+        placeholder={
+          searchByFood ? "What's for dinner?" : 'What are we drinking?'
+        }
+      />
+      <button type="submit">Search</button>
+    </form>
   );
 };
 
