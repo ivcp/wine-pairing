@@ -5,8 +5,7 @@ const Form = ({
   setIsLoading,
   setPairings,
   setPairingText,
-  setError,
-  setErrorMessage
+  setError
 }) => {
   const textInput = useRef(null);
 
@@ -34,7 +33,9 @@ const Form = ({
       }
 
       if (!data.ok) {
-        throw new Error('Something went wrong!');
+        throw new Error(
+          `Failed to get ${searchByFood ? 'wine' : 'food'} pairing, sorry.`
+        );
       }
       const { data: response } = await data.json();
       if (response.status === 'failure') {
@@ -66,8 +67,10 @@ const Form = ({
       e.target.reset();
     } catch (err) {
       setIsLoading(false);
-      setError(true);
-      setErrorMessage(err.message);
+      setError({
+        error: true,
+        message: err.message
+      });
     }
   };
 

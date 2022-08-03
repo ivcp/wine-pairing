@@ -7,49 +7,43 @@ function App() {
   const [searchByFood, setSearchByFood] = useState(true);
   const [pairings, setPairings] = useState([]);
   const [pairingText, setPairingText] = useState('');
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState({
+    error: false,
+    message: ''
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
-
-  const handlePairings = pairings => {
-    setPairings(pairings);
-  };
-  const handlePairingText = text => {
-    setPairingText(text);
-  };
-  const handleError = err => {
-    setError(err);
-  };
-  const handleErrorMessage = msg => {
-    setErrorMessage(msg);
-  };
-  const handleLoading = loading => {
-    setIsLoading(loading);
-  };
+  const [recError, setRecError] = useState({
+    error: false,
+    message: ''
+  });
+  const [recIsLoading, setRecIsLoading] = useState(false);
 
   return (
     <main>
       <Form
         searchByFood={searchByFood}
-        setPairings={handlePairings}
-        setPairingText={handlePairingText}
-        setError={handleError}
-        setErrorMessage={handleErrorMessage}
-        setIsLoading={handleLoading}
+        setPairings={setPairings}
+        setPairingText={setPairingText}
+        setError={setError}
+        setIsLoading={setIsLoading}
       />
       <Pairings
         pairings={pairings}
         pairingText={pairingText}
-        error={error}
-        errorMessage={errorMessage}
+        error={error.error}
+        errorMessage={error.message}
         isLoading={isLoading}
         onSetRecommendation={setRecommendations}
+        setRecError={setRecError}
+        setRecLoading={setRecIsLoading}
         searchByFood={searchByFood}
       />
       <Recommendations
         recommendations={recommendations}
         searchByFood={searchByFood}
+        error={recError}
+        isLoading={recIsLoading}
       />
     </main>
   );

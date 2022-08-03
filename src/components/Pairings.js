@@ -8,7 +8,9 @@ const Pairings = ({
   errorMessage,
   isLoading,
   onSetRecommendation,
-  searchByFood
+  searchByFood,
+  setRecError,
+  setRecLoading
 }) => {
   return (
     <div>
@@ -21,6 +23,8 @@ const Pairings = ({
               value={pairing}
               setRecommendation={onSetRecommendation}
               searchByFood={searchByFood}
+              setError={setRecError}
+              setIsLoading={setRecLoading}
             >
               {pairing}
             </Pairing>

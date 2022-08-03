@@ -1,8 +1,16 @@
 import React from 'react';
 
-const Pairing = ({ children, value, setRecommendation, searchByFood }) => {
+const Pairing = ({
+  children,
+  value,
+  setRecommendation,
+  searchByFood,
+  setError,
+  setIsLoading
+}) => {
   const getWineRec = async value => {
     try {
+      setIsLoading(true);
       const data = await fetch(
         searchByFood
           ? `/.netlify/functions/fetch-pairings?type=wine-recommendation&wine=${value}`
@@ -12,7 +20,12 @@ const Pairing = ({ children, value, setRecommendation, searchByFood }) => {
         const response = await data.json();
         throw new Error(response.body.message);
       }
-      if (!data.ok) throw new Error('Something went wrong!');
+      if (!data.ok)
+        throw new Error(
+          `Failed to get ${
+            searchByFood ? 'wine' : 'dish'
+          } recommendations, sorry.`
+        );
       const { data: response } = await data.json();
       if (response.status === 'failure') {
         throw new Error(response.message);
@@ -20,9 +33,14 @@ const Pairing = ({ children, value, setRecommendation, searchByFood }) => {
       searchByFood
         ? setRecommendation(response.recommendedWines)
         : setRecommendation(response.results);
+
+      setIsLoading(false);
     } catch (err) {
-      console.log(err.message);
-        //TODO: add error state 
+      setIsLoading(false);
+      setError({
+        error: true,
+        message: err.message
+      });
     }
   };
   return <li onClick={getWineRec.bind(null, value)}>{children}</li>;

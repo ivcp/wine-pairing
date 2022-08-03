@@ -1,9 +1,16 @@
 import React from 'react';
 
-const Recommendations = ({ recommendations, searchByFood }) => {
+const Recommendations = ({
+  recommendations,
+  searchByFood,
+  error,
+  isLoading
+}) => {
   return (
     <div>
-      {recommendations.length > 0 &&
+      {!error.error &&
+        !isLoading &&
+        recommendations.length > 0 &&
         recommendations.map(rec => (
           <article key={rec.id}>
             <h2>{rec.title}</h2>
@@ -14,6 +21,8 @@ const Recommendations = ({ recommendations, searchByFood }) => {
             {/* TODO: link */}
           </article>
         ))}
+      {error.error && !isLoading && <p>{error.message}</p>}
+      {isLoading && <p>Loading...</p>}
     </div>
   );
 };
