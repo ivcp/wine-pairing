@@ -32,12 +32,17 @@ const handler = async function(event) {
         body: JSON.stringify({ body: await response.json() })
       };
     }
-    if (!response.ok) throw new Error('Something went wrong!');
+    if (response.status === 402) {
+      return {
+        statusCode: response.status,
+        body: JSON.stringify({ body: await response.json() })
+      };
+    }
+    if (!response.ok) throw new Error(response.message);
     const data = await response.json();
 
     return { statusCode: response.status, body: JSON.stringify({ data }) };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message })

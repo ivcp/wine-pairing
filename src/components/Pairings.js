@@ -4,8 +4,6 @@ import Pairing from './Pairing';
 const Pairings = ({
   pairings,
   pairingText,
-  error,
-  errorMessage,
   isLoading,
   onSetRecommendation,
   searchByFood,
@@ -14,8 +12,8 @@ const Pairings = ({
 }) => {
   return (
     <div>
-      {!error && pairingText !== '' && <p>{pairingText}</p>}
-      {!error && pairings.length > 0 && (
+      {!isLoading && pairingText !== '' && <p>{pairingText}</p>}
+      {pairings.length > 0 && (
         <ul>
           {pairings.map(pairing => (
             <Pairing
@@ -24,6 +22,7 @@ const Pairings = ({
               setRecommendation={onSetRecommendation}
               searchByFood={searchByFood}
               setError={setRecError}
+              isLoading={isLoading}
               setIsLoading={setRecLoading}
             >
               {pairing}
@@ -31,7 +30,6 @@ const Pairings = ({
           ))}
         </ul>
       )}
-      {error && !isLoading && <p>{errorMessage}</p>}
       {isLoading && <p>Loading...</p>}
     </div>
   );

@@ -1,17 +1,19 @@
 import React, { useRef } from 'react';
+import styles from './Form.module.css';
 
 const Form = ({
   searchByFood,
   setIsLoading,
   setPairings,
   setPairingText,
-  setError
+  error,
+  setError,
+  setRecommendations
 }) => {
   const textInput = useRef(null);
 
   const handleSubmit = async e => {
     e.preventDefault();
-
     try {
       setIsLoading(true);
       const query = textInput.current.value.trim();
@@ -30,6 +32,13 @@ const Form = ({
       if (data.status === 400) {
         const response = await data.json();
         throw new Error(response.body.message);
+      }
+
+      if (data.status === 402) {
+        const response = await data.json();
+        throw new Error(
+          'Sorry, no more food and wine matching today. API limit reached.'
+        );
       }
 
       if (!data.ok) {
@@ -64,6 +73,7 @@ const Form = ({
       setIsLoading(false);
       setPairings(pairingsArray);
       setPairingText(textString);
+      setRecommendations([]);
       e.target.reset();
     } catch (err) {
       setIsLoading(false);
@@ -75,7 +85,7 @@ const Form = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
         ref={textInput}
         type="text"
@@ -85,6 +95,8 @@ const Form = ({
         }
       />
       <button type="submit">Search</button>
+      {error.error && <label htmlFor="input">{error.message}</label>}
+      {/* add label with instructions */}
     </form>
   );
 };

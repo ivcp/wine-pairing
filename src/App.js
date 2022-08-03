@@ -21,18 +21,19 @@ function App() {
 
   return (
     <main>
+      {/* TODO: toggle btn */}
       <Form
         searchByFood={searchByFood}
         setPairings={setPairings}
         setPairingText={setPairingText}
+        error={error}
         setError={setError}
         setIsLoading={setIsLoading}
+        setRecommendations={setRecommendations}
       />
       <Pairings
         pairings={pairings}
         pairingText={pairingText}
-        error={error.error}
-        errorMessage={error.message}
         isLoading={isLoading}
         onSetRecommendation={setRecommendations}
         setRecError={setRecError}

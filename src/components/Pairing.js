@@ -5,10 +5,11 @@ const Pairing = ({
   value,
   setRecommendation,
   searchByFood,
+  isLoading,
   setError,
   setIsLoading
 }) => {
-  const getWineRec = async value => {
+  const getRec = async value => {
     try {
       setIsLoading(true);
       const data = await fetch(
@@ -34,6 +35,8 @@ const Pairing = ({
         ? setRecommendation(response.recommendedWines)
         : setRecommendation(response.results);
 
+        // TODO: filter response.results for title with space in front
+
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -43,7 +46,7 @@ const Pairing = ({
       });
     }
   };
-  return <li onClick={getWineRec.bind(null, value)}>{children}</li>;
+  return !isLoading && <li onClick={getRec.bind(null, value)}>{children}</li>;
 };
 
 export default Pairing;
