@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from './components/Form';
 import Pairings from './components/Pairings';
 import Recommendations from './components/Recommendations';
+import Toggle from './components/Toggle';
 
 function App() {
   const [searchByFood, setSearchByFood] = useState(true);
@@ -19,9 +20,13 @@ function App() {
   });
   const [recIsLoading, setRecIsLoading] = useState(false);
 
+  const toggle = () => {
+    setSearchByFood(prev => !prev);
+  };
   return (
     <main>
       {/* TODO: toggle btn */}
+      <Toggle searchByFood={searchByFood} toggleSearch={toggle} />
       <Form
         searchByFood={searchByFood}
         setPairings={setPairings}

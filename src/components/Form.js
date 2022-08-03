@@ -30,11 +30,13 @@ const Form = ({
       );
 
       if (data.status === 400) {
+        e.target.reset();
         const response = await data.json();
         throw new Error(response.body.message);
       }
 
       if (data.status === 402) {
+        e.target.reset();
         const response = await data.json();
         throw new Error(
           'Sorry, no more food and wine matching today. API limit reached.'
@@ -42,6 +44,7 @@ const Form = ({
       }
 
       if (!data.ok) {
+        e.target.reset();
         throw new Error(
           `Failed to get ${searchByFood ? 'wine' : 'food'} pairing, sorry.`
         );
@@ -96,7 +99,13 @@ const Form = ({
       />
       <button type="submit">Search</button>
       {error.error && <label htmlFor="input">{error.message}</label>}
-      {/* add label with instructions */}
+      {!error.error && (
+        <label htmlFor="input">
+          {searchByFood
+            ? `Eg. Tuna, Lasagna, Bacon...`
+            : `Eg. Merlot, Cabernet Sauvignon, Chianti...`}
+        </label>
+      )}
     </form>
   );
 };
