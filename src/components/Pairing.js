@@ -32,10 +32,16 @@ const Pairing = ({
         throw new Error(response.message);
       }
       searchByFood
-        ? setRecommendation(response.recommendedWines)
-        : setRecommendation(response.results);
+        ? setRecommendation({
+            wineRecommendation: true,
+            items: response.recommendedWines
+          })
+        : setRecommendation({
+            wineRecommendation: false,
+            items: response.results
+          });
 
-        // TODO: filter response.results for title with space in front
+      // TODO: filter response.results for title with space in front
 
       setIsLoading(false);
     } catch (err) {

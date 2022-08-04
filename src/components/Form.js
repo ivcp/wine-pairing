@@ -8,7 +8,8 @@ const Form = ({
   setPairingText,
   error,
   setError,
-  setRecommendations
+  setRecommendations,
+  setQuery
 }) => {
   const textInput = useRef(null);
 
@@ -37,7 +38,6 @@ const Form = ({
 
       if (data.status === 402) {
         e.target.reset();
-        const response = await data.json();
         throw new Error(
           'Sorry, no more food and wine matching today. API limit reached.'
         );
@@ -76,7 +76,11 @@ const Form = ({
       setIsLoading(false);
       setPairings(pairingsArray);
       setPairingText(textString);
-      setRecommendations([]);
+      setRecommendations({
+        wineRecommendation: searchByFood ? true : false,
+        items: []
+      });
+      setQuery(query);
       e.target.reset();
     } catch (err) {
       setIsLoading(false);
@@ -99,13 +103,6 @@ const Form = ({
       />
       <button type="submit">Search</button>
       {error.error && <label htmlFor="input">{error.message}</label>}
-      {!error.error && (
-        <label htmlFor="input">
-          {searchByFood
-            ? `Eg. Tuna, Lasagna, Bacon...`
-            : `Eg. Merlot, Cabernet Sauvignon, Chianti...`}
-        </label>
-      )}
     </form>
   );
 };

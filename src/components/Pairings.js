@@ -8,11 +8,18 @@ const Pairings = ({
   onSetRecommendation,
   searchByFood,
   setRecError,
-  setRecLoading
+  setRecLoading,
+  query
 }) => {
   return (
     <div>
-      {!isLoading && pairingText !== '' && <p>{pairingText}</p>}
+      {!isLoading && pairingText !== '' && (
+        <div>
+          <h2>{query}</h2>
+          <p>{pairingText}</p>
+        </div>
+        
+      )}
       {pairings.length > 0 && (
         <ul>
           {pairings.map(pairing => (

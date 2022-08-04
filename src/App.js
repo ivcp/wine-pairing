@@ -3,9 +3,11 @@ import Form from './components/Form';
 import Pairings from './components/Pairings';
 import Recommendations from './components/Recommendations';
 import Toggle from './components/Toggle';
+import Random from './components/Random';
 
 function App() {
   const [searchByFood, setSearchByFood] = useState(true);
+  const [query, setQuery] = useState('');
   const [pairings, setPairings] = useState([]);
   const [pairingText, setPairingText] = useState('');
   const [error, setError] = useState({
@@ -13,7 +15,10 @@ function App() {
     message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [recommendations, setRecommendations] = useState([]);
+  const [recommendations, setRecommendations] = useState({
+    wineRecommendation: true,
+    items: []
+  });
   const [recError, setRecError] = useState({
     error: false,
     message: ''
@@ -35,7 +40,9 @@ function App() {
         setError={setError}
         setIsLoading={setIsLoading}
         setRecommendations={setRecommendations}
+        setQuery={setQuery}
       />
+      <Random />
       <Pairings
         pairings={pairings}
         pairingText={pairingText}
@@ -44,6 +51,7 @@ function App() {
         setRecError={setRecError}
         setRecLoading={setRecIsLoading}
         searchByFood={searchByFood}
+        query={query}
       />
       <Recommendations
         recommendations={recommendations}
