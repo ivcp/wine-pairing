@@ -42,7 +42,17 @@ function App() {
         setRecommendations={setRecommendations}
         setQuery={setQuery}
       />
-      <Random />
+      <Random
+        searchByFood={searchByFood}
+        setPairings={setPairings}
+        setPairingText={setPairingText}
+        error={error}
+        setError={setError}
+        setRecError={setRecError}
+        setIsLoading={setIsLoading}
+        setRecommendations={setRecommendations}
+        setQuery={setQuery}
+      />
       <Pairings
         pairings={pairings}
         pairingText={pairingText}

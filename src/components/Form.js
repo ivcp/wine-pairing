@@ -16,8 +16,8 @@ const Form = ({
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setIsLoading(true);
     const query = textInput.current.value.trim();
-
     const fetchResult = await fetchData(query, searchByFood);
 
     if (!fetchResult.error) {
@@ -38,6 +38,8 @@ const Form = ({
         wineRecommendation: wineRecommendation,
         items: items
       });
+
+      //SET REC ERROR FALSE HERE??? TODO:
       setQuery(query);
       e.target.reset();
     }

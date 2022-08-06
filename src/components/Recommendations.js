@@ -34,6 +34,7 @@ const Recommendations = ({ recommendations, error, isLoading }) => {
             <h2>{rec.title}</h2>
           </article>
         ))}
+
       {error.error && !isLoading && <p>{error.message}</p>}
       {isLoading && <p>Loading...</p>}
     </div>

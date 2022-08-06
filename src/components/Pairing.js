@@ -31,17 +31,30 @@ const Pairing = ({
       if (response.status === 'failure') {
         throw new Error(response.message);
       }
+
+      const recommendations = searchByFood
+        ? response.recommendedWines
+        : response.results;
+
+      if (recommendations.length === 0)
+        throw new Error(
+          `No ${searchByFood ? 'wines' : 'recipes'} found for ${value}, sorry.`
+        );
       searchByFood
         ? setRecommendation({
             wineRecommendation: true,
-            items: response.recommendedWines
+            items: recommendations
           })
         : setRecommendation({
             wineRecommendation: false,
-            items: response.results
+            items: recommendations
           });
-
       // TODO: filter response.results for title with space in front
+
+      setError({
+        error: false,
+        message: ''
+      });
 
       setIsLoading(false);
     } catch (err) {
