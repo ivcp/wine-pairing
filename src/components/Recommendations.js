@@ -1,12 +1,5 @@
 import React from 'react';
-
-const addDashes = input => {
-  const withDashes = input
-    .trim()
-    .split(' ')
-    .join('-');
-  return withDashes;
-};
+import addDashes from '../helpers/addDashes';
 
 const Recommendations = ({ recommendations, error, isLoading }) => {
   return (

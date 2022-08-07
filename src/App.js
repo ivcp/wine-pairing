@@ -38,6 +38,7 @@ function App() {
         setPairingText={setPairingText}
         error={error}
         setError={setError}
+        setRecError={setRecError}
         setIsLoading={setIsLoading}
         setRecommendations={setRecommendations}
         setQuery={setQuery}

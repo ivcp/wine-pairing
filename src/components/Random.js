@@ -1,11 +1,8 @@
 import React from 'react';
 import fetchData from '../helpers/fetchData';
-import wineList from '../wineList';
-import foodList from '../foodList';
-
-function getRandomNum(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
+import wineList from '../lists/wineList';
+import foodList from '../lists/foodList';
+import getRandomNum from '../helpers/getRandomNum';
 
 const Random = ({
   searchByFood,
@@ -24,7 +21,6 @@ const Random = ({
       ? (query = foodList[getRandomNum(foodList.length)])
       : (query = wineList[getRandomNum(wineList.length)]);
 
-    console.log(query);
     const fetchResult = await fetchData(query, searchByFood);
 
     if (!fetchResult.error) {
@@ -46,7 +42,6 @@ const Random = ({
         items: items
       });
       setQuery(query);
-      ///NEW - CHECK!!! TODO:
       setRecError({
         error: false,
         message: ''

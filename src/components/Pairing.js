@@ -49,7 +49,7 @@ const Pairing = ({
             wineRecommendation: false,
             items: recommendations
           });
-      // TODO: filter response.results for title with space in front
+      // TODO: filter response.results for title with space in front? 'Pike' problem
 
       setError({
         error: false,
