@@ -60,7 +60,6 @@ const Form = ({
         message: ''
       });
     }
-   
   };
 
   return (

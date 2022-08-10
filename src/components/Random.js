@@ -59,7 +59,10 @@ const Random = ({
     }
   };
 
-  //Call getRandomPairing here with use Effect TODO:
+  //ON MOUNT GET RANDOM PAIRING: import useEff
+  // useEffect(() => {
+  //   getRandomPairing();
+  // }, []);
 
   return <button onClick={getRandomPairing}>Random</button>;
 };
