@@ -1,3 +1,17 @@
+:root {
+  --color-primary-red: 0 85% 25%;
+  --color-primary-dark-red: 0 92% 20%;
+  --color-primary-light-red: 0 82% 89%;
+  --color-primary-dark-orange: 29 80% 44%;
+  --color-primary-very-dark-orange: 22 82% 39%;
+  --color-primary-orange: 29 70% 48%;
+  --color-primary-light-yellow: 49 100% 96%;
+  --color-text: 40 13% 23%;
+  --color-text-light: 38 11% 28%;
+  --color-light-grey: 40 23% 97%;
+  --color-background: 43 13% 90%;
+}
+
 *,
 *::before,
 *::after {
@@ -7,6 +21,7 @@
 }
 
 html {
+  font-size: 62.5%;
   box-sizing: border-box;
 }
 

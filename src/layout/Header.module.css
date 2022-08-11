@@ -1,0 +1,15 @@
+.header {
+  height: 24rem;
+  background: url(../assets/waves-mobile.svg) no-repeat;
+  background-color: hsl(var(--color-primary-dark-orange));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  font-size: 3.6rem;
+  color: hsl(var(--color-primary-dark-red));
+  margin-top: 4rem;
+}
