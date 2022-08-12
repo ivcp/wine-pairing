@@ -28,9 +28,7 @@ const Toggle = ({ searchByFood, toggleSearch }) => {
         </span>
         <div
           className={`${styles.selected} ${searchByFood ? styles.move : ''}`}
-        >
-          {/* {searchByFood ? 'FOOD' : 'WINE'} */}
-        </div>
+        ></div>
       </label>
     </div>
   );

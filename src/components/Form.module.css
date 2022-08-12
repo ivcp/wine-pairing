@@ -1,4 +1,52 @@
 .form {
-  /* display: flex;
-  flex-direction: column; */
+  height: 4.8rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  transform: translateY(50%);
+}
+
+.input {
+  border: none;
+  padding-inline: 1rem;
+  width: 80%;
+  height: 100%;
+  background-color: hsl(var(--color-primary-light-yellow));
+  font-size: 1.4rem;
+  color: hsl(var(--color-text));
+}
+
+.input::placeholder {
+  color: hsl(var(--color-primary-orange));
+  font-size: 1.4rem;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.btn {
+  border: none;
+  width: 20%;
+  height: 100%;
+  background: url('../assets/bottle-mobile.svg') center no-repeat;
+  background-color: hsl(var(--color-primary-red));
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.warning {
+  margin-right: auto;
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 900;
+  color: hsl(var(--color-primary-red));
+}
+
+.error {
+  background-color: hsl(var(--color-primary-light-red));
 }

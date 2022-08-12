@@ -24,7 +24,7 @@
   height: 2.8rem;
   position: relative;
   font-weight: 900;
-
+  font-size: 0.8rem;
   background-color: hsl(var(--color-primary-light-yellow));
 }
 

@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import fetchData from '../helpers/fetchData';
+import foodList from '../lists/foodList';
+import wineList from '../lists/wineList';
 import styles from './Form.module.css';
 
 const Form = ({
@@ -14,6 +16,7 @@ const Form = ({
   setRecError
 }) => {
   const textInput = useRef(null);
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -62,18 +65,32 @@ const Form = ({
     }
   };
 
+  const getSuggestions = e => {
+    const matches = foodList.filter(food =>
+      food.startsWith(e.target.value.toLowerCase())
+    );
+    setSuggestions(matches);
+  };
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <input
+        className={`${styles.input} ${error.error ? styles.error : ''}`}
         ref={textInput}
+        onChange={getSuggestions}
         type="text"
         id="input"
         placeholder={
           searchByFood ? "What's for dinner?" : 'What are we drinking?'
         }
       />
-      <button type="submit">Search</button>
-      {error.error && <label htmlFor="input">{error.message}</label>}
+      <button className={styles.btn} type="submit"></button>
+      {suggestions.length > 0 && suggestions.map(s => <div>{s}</div>)}
+      {error.error && (
+        <label className={styles.warning} htmlFor="input">
+          {error.message}
+        </label>
+      )}
     </form>
   );
 };
