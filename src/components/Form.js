@@ -16,6 +16,7 @@ const Form = ({
   setRecError
 }) => {
   const textInput = useRef(null);
+  const formRef = useRef(null);
   const [suggestions, setSuggestions] = useState([]);
 
   const handleSubmit = async e => {
@@ -66,14 +67,34 @@ const Form = ({
   };
 
   const getSuggestions = e => {
+    if (e.target.value === '') {
+      setSuggestions([]);
+      return;
+    }
     const matches = foodList.filter(food =>
       food.startsWith(e.target.value.toLowerCase())
     );
     setSuggestions(matches);
   };
 
+  const handleSuggestion = suggestion => {
+    textInput.current.value = suggestion;
+    formRef.current.requestSubmit();
+    setSuggestions([]);
+  };
+
+  const pressEnter = (suggestion, e) => {
+    if (e.keyCode !== 13) return;
+    handleSuggestion(suggestion);
+  };
+
+  const arrowNavigation = e => {
+    if (e.keyCode !== 40) return;
+    if (suggestions === []) return;
+  };
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
       <input
         className={`${styles.input} ${error.error ? styles.error : ''}`}
         ref={textInput}
@@ -83,9 +104,26 @@ const Form = ({
         placeholder={
           searchByFood ? "What's for dinner?" : 'What are we drinking?'
         }
+        autoComplete="off"
+        onKeyDown={arrowNavigation}
       />
       <button className={styles.btn} type="submit"></button>
-      {suggestions.length > 0 && suggestions.map(s => <div>{s}</div>)}
+      {suggestions.length > 0 && (
+        <ul className={styles.suggestions} role={'tablist'}>
+          {suggestions.map(suggestion => (
+            <li
+              onClick={handleSuggestion.bind(null, suggestion)}
+              className={styles.suggestion}
+              key={suggestion}
+              role={'tab'}
+              tabIndex={0}
+              onKeyDown={pressEnter.bind(null, suggestion)}
+            >
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
       {error.error && (
         <label className={styles.warning} htmlFor="input">
           {error.message}
