@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import fetchData from '../helpers/fetchData';
 import foodList from '../lists/foodList';
 import wineList from '../lists/wineList';
@@ -96,11 +96,17 @@ const Form = ({
   const selectSuggestion = (suggestion, e) => {
     if (e.keyCode === 13) handleSuggestion(suggestion);
     if (e.keyCode === 40) {
-      e.target.nextElementSibling && e.target.nextElementSibling.focus();
+      e.target.nextElementSibling
+        ? e.target.nextElementSibling.focus()
+        : document.querySelector('[role="tab"]').focus();
     }
     if (e.keyCode === 38) {
-      e.target.previousElementSibling &&
+      if (e.target.previousElementSibling) {
         e.target.previousElementSibling.focus();
+        return;
+      }
+      textInput.current.focus();
+      setSuggestions([]);
     }
   };
 
@@ -109,6 +115,22 @@ const Form = ({
     if (suggestions.length === 0) return;
     document.querySelector('[role="tab"]').focus();
   };
+
+  const updateInputValue = value => {
+    textInput.current.value = value;
+  };
+
+  const hideSuggestions = e => {
+    if (e.target === formRef.current) return;
+    if (e.target !== textInput.current) setSuggestions([]);
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', hideSuggestions);
+    return () => {
+      document.removeEventListener('click', hideSuggestions);
+    };
+  }, []);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
@@ -134,6 +156,7 @@ const Form = ({
               key={suggestion}
               role={'tab'}
               tabIndex={0}
+              onFocus={updateInputValue.bind(null, suggestion)}
               onKeyDown={selectSuggestion.bind(null, suggestion)}
             >
               {suggestion}
