@@ -16,19 +16,13 @@ const Toggle = ({ searchByFood, toggleSearch }) => {
         id="toggle"
       />
       <label htmlFor="toggle" className={styles.label}>
-        <span
-          className={`${styles.span} ${!searchByFood ? styles.checked : ''}`}
-        >
-          WINE
-        </span>
-        <span
-          className={`${styles.span} ${searchByFood ? styles.checked : ''}`}
-        >
-          FOOD
-        </span>
+        <span className={styles.span}>WINE</span>
+        <span className={styles.span}>FOOD</span>
         <div
           className={`${styles.selected} ${searchByFood ? styles.move : ''}`}
-        ></div>
+        >
+          {searchByFood ? 'FOOD' : 'WINE'}
+        </div>
       </label>
     </div>
   );

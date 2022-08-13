@@ -8,6 +8,14 @@
   position: relative;
 }
 
+@media (min-width: 37.5em) {
+  .form {
+    transform: translateY(0);
+    width: 39rem;
+    height: 6.2rem;
+  }
+}
+
 .input {
   border: none;
   padding-inline: 1rem;
@@ -18,9 +26,21 @@
   color: hsl(var(--color-text));
 }
 
+@media (min-width: 37.5em) {
+  .input {
+    font-size: 1.6rem;
+  }
+}
+
 .input::placeholder {
   color: hsl(var(--color-primary-orange));
   font-size: 1.4rem;
+}
+
+@media (min-width: 37.5em) {
+  .input::placeholder {
+    font-size: 1.6rem;
+  }
 }
 
 .input:focus {
@@ -35,6 +55,19 @@
   background-color: hsl(var(--color-primary-red));
 }
 
+@media (min-width: 37.5em) {
+  .btn {
+    background: url('../assets/bottle-desktop.svg') center no-repeat;
+    background-color: hsl(var(--color-primary-red));
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .btn:hover {
+    background-color: hsl(var(--color-primary-dark-red));
+  }
+}
+
 .btn:focus {
   outline: none;
 }
@@ -46,6 +79,12 @@
   font-style: italic;
   font-weight: 900;
   color: hsl(var(--color-primary-red));
+}
+
+@media (min-width: 37.5em) {
+  .warning {
+    font-size: 1.2rem;
+  }
 }
 
 .error {
@@ -68,6 +107,13 @@
   font-weight: 900;
   font-size: 1rem;
   background-color: hsl(var(--color-primary-light-yellow));
+}
+
+@media (min-width: 37.5em) {
+  .suggestion {
+    font-size: 1.2rem;
+    padding: 1.2rem 1rem;
+  }
 }
 
 .suggestion:last-of-type {

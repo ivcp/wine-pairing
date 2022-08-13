@@ -122,7 +122,13 @@ const Form = ({
 
   const hideSuggestions = e => {
     if (e.target === formRef.current) return;
-    if (e.target !== textInput.current) setSuggestions([]);
+    if (e.target !== textInput.current) {
+      setSuggestions([]);
+      setError({
+        error: false,
+        message: ''
+      });
+    }
   };
 
   useEffect(() => {

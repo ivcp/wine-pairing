@@ -5,6 +5,13 @@
   gap: 0.5rem;
 }
 
+@media (min-width: 37.5em) {
+  .toggle {
+    order: 2;
+    margin-bottom: 1.5rem;
+  }
+}
+
 .checkbox {
   /* visually hidden, sr only */
   position: absolute;
@@ -28,18 +35,23 @@
   background-color: hsl(var(--color-primary-light-yellow));
 }
 
+@media (min-width: 37.5em) {
+  .label {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .label:hover .selected {
+    background-color: hsl(var(--color-primary-dark-red));
+  }
+}
+
 .span {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   color: hsl(var(--color-primary-orange));
-  z-index: 100;
-  transition: color 0.3s;
-}
-
-.span.checked {
-  color: hsl(var(--color-light-grey));
 }
 
 .selected {
@@ -47,8 +59,12 @@
   width: 50%;
   right: 50%;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--color-light-grey));
   background-color: hsl(var(--color-primary-red));
-  transition: right 0.2s ease;
+  transition: right 0.2s ease, background-color 0.2s;
 }
 
 .selected.move {
@@ -61,5 +77,9 @@
   color: hsl(var(--color-light-grey));
 }
 
-.srOnly {
+@media (min-width: 37.5em) {
+  .searchby {
+    font-size: 1rem;
+    align-self: flex-start;
+  }
 }
