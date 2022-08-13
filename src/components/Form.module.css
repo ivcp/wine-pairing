@@ -55,13 +55,12 @@
 .suggestions {
   position: absolute;
   left: 0;
-  right: 0;
+  right: 20%;
   top: 100%;
-  margin-top: 0.1rem;
 }
 
 .suggestion {
-  border: 0.1rem solid hsl(var(--color-primary-orange) / 0.6);
+  border: 0.1rem solid hsl(var(--color-primary-orange) / 0.2);
   border-bottom: none;
   padding: 1rem 0.5rem;
   color: hsl(var(--color-text) / 0.6);
@@ -72,5 +71,5 @@
 }
 
 .suggestion:last-of-type {
-  border-bottom: 0.1rem solid hsl(var(--color-primary-orange) / 0.6);
+  border-bottom: 0.1rem solid hsl(var(--color-primary-orange) / 0.2);
 }

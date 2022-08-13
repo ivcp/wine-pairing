@@ -48,12 +48,14 @@ const Form = ({
         message: ''
       });
       setQuery(query);
+      setSuggestions([]);
       e.target.reset();
     }
 
     if (fetchResult.error) {
       const { error, message, loading } = fetchResult;
       e.target.reset();
+      setSuggestions([]);
       setIsLoading(loading);
       setError({
         error: error,
@@ -71,9 +73,17 @@ const Form = ({
       setSuggestions([]);
       return;
     }
-    const matches = foodList.filter(food =>
-      food.startsWith(e.target.value.toLowerCase())
-    );
+    let matches;
+    if (searchByFood) {
+      matches = foodList.filter(food =>
+        food.startsWith(e.target.value.toLowerCase())
+      );
+    }
+    if (!searchByFood) {
+      matches = wineList.filter(food =>
+        food.startsWith(e.target.value.toLowerCase())
+      );
+    }
     setSuggestions(matches);
   };
 
@@ -83,14 +93,21 @@ const Form = ({
     setSuggestions([]);
   };
 
-  const pressEnter = (suggestion, e) => {
-    if (e.keyCode !== 13) return;
-    handleSuggestion(suggestion);
+  const selectSuggestion = (suggestion, e) => {
+    if (e.keyCode === 13) handleSuggestion(suggestion);
+    if (e.keyCode === 40) {
+      e.target.nextElementSibling && e.target.nextElementSibling.focus();
+    }
+    if (e.keyCode === 38) {
+      e.target.previousElementSibling &&
+        e.target.previousElementSibling.focus();
+    }
   };
 
   const arrowNavigation = e => {
     if (e.keyCode !== 40) return;
-    if (suggestions === []) return;
+    if (suggestions.length === 0) return;
+    document.querySelector('[role="tab"]').focus();
   };
 
   return (
@@ -117,7 +134,7 @@ const Form = ({
               key={suggestion}
               role={'tab'}
               tabIndex={0}
-              onKeyDown={pressEnter.bind(null, suggestion)}
+              onKeyDown={selectSuggestion.bind(null, suggestion)}
             >
               {suggestion}
             </li>
