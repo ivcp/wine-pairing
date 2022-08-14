@@ -3,6 +3,8 @@ import fetchData from '../helpers/fetchData';
 import wineList from '../lists/wineList';
 import foodList from '../lists/foodList';
 import getRandomNum from '../helpers/getRandomNum';
+import useMediaQuery from '../hooks/useMediaQuery';
+import styles from './Random.module.css';
 
 const Random = ({
   searchByFood,
@@ -14,6 +16,7 @@ const Random = ({
   setRecommendations,
   setQuery
 }) => {
+  const isDesktop = useMediaQuery('(min-width: 37.5em)');
   const getRandomPairing = async () => {
     setIsLoading(true);
     let query;
@@ -64,7 +67,9 @@ const Random = ({
   //   getRandomPairing();
   // }, []);
 
-  return <button onClick={getRandomPairing}>Random</button>;
+  return (
+    <button className={styles.mobileDice} onClick={getRandomPairing}></button>
+  );
 };
 
 export default Random;

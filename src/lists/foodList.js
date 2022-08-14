@@ -11,7 +11,6 @@ const foodList = [
   'beef bourguignon',
   'pasta carbonara',
   'spaghetti carbonara',
-  'chili',
   'paella',
   'spanish',
   'empanada',

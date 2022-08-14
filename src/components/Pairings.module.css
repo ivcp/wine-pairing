@@ -1,0 +1,29 @@
+.pairings {
+  margin-inline: 10%;
+}
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title {
+  align-self: center;
+  margin-left: 2.5rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 900;
+  color: hsl(var(--color-text));
+}
+
+.text {
+  margin-top: 3rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: hsl(var(--color-text));
+}
+
+.line {
+  margin-top: 2rem;
+  width: 100%;
+}

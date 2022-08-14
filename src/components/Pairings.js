@@ -2,6 +2,7 @@ import React from 'react';
 import Pairing from './Pairing';
 import Random from './Random';
 import useMediaQuery from '../hooks/useMediaQuery';
+import styles from './Pairings.module.css';
 
 const Pairings = ({
   pairings,
@@ -21,26 +22,29 @@ const Pairings = ({
 }) => {
   const isDesktop = useMediaQuery('(min-width: 37.5em)');
   return (
-    <article>
-      {!isDesktop && (
-        <Random
-          searchByFood={searchByFood}
-          setPairings={setPairings}
-          setPairingText={setPairingText}
-          error={error}
-          setError={setError}
-          setRecError={setRecError}
-          setIsLoading={setIsLoading}
-          setRecommendations={onSetRecommendation}
-          setQuery={setQuery}
-        />
-      )}
-      {!isLoading && pairingText !== '' && (
-        <div>
-          <h2>{query}</h2>
-          <p>{pairingText}</p>
-        </div>
-      )}
+    <article className={styles.pairings}>
+      <div className={styles.result}>
+        {!isDesktop && (
+          <Random
+            searchByFood={searchByFood}
+            setPairings={setPairings}
+            setPairingText={setPairingText}
+            error={error}
+            setError={setError}
+            setRecError={setRecError}
+            setIsLoading={setIsLoading}
+            setRecommendations={onSetRecommendation}
+            setQuery={setQuery}
+          />
+        )}
+        {!isLoading && pairingText !== '' && (
+          <>
+            <h2 className={styles.title}>{query}</h2>
+            <p className={styles.text}>{pairingText}</p>
+            <hr className={styles.line} />
+          </>
+        )}
+      </div>
       {pairings.length > 0 && (
         <ul>
           {pairings.map(pairing => (

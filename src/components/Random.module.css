@@ -1,0 +1,12 @@
+.mobileDice {
+  height: 2.4rem;
+  width: 2.4rem;
+  border: none;
+  background: url('../assets/dice-mobile.svg') center no-repeat;
+  background-size: 100%;
+  transition: transform 0.2s;
+}
+
+.mobileDice:active {
+  transform: translateY(1px);
+}
