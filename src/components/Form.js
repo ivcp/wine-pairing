@@ -13,11 +13,12 @@ const Form = ({
   setError,
   setRecommendations,
   setQuery,
-  setRecError
+  setRecError,
+  suggestions,
+  setSuggestions
 }) => {
   const textInput = useRef(null);
   const formRef = useRef(null);
-  const [suggestions, setSuggestions] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();

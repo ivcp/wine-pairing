@@ -9,6 +9,7 @@
   .toggle {
     order: 2;
     margin-bottom: 1.5rem;
+    z-index: 0;
   }
 }
 
@@ -52,6 +53,12 @@
   justify-content: center;
   width: 100%;
   color: hsl(var(--color-primary-orange));
+  z-index: 5;
+  transition: color 0.3s ease;
+}
+
+.checked {
+  color: hsl(var(--color-light-grey));
 }
 
 .selected {
@@ -81,5 +88,11 @@
   .searchby {
     font-size: 1rem;
     align-self: flex-start;
+  }
+}
+
+@media (min-width: 37.5em) {
+  .hidden {
+    visibility: hidden;
   }
 }

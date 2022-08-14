@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Toggle.module.css';
 
-const Toggle = ({ searchByFood, toggleSearch }) => {
+const Toggle = ({ searchByFood, toggleSearch, suggestions }) => {
   return (
     <div className={styles.toggle}>
       <label className={styles.searchby} htmlFor="checkbox">
@@ -15,14 +15,26 @@ const Toggle = ({ searchByFood, toggleSearch }) => {
         name="toggle search"
         id="toggle"
       />
-      <label htmlFor="toggle" className={styles.label}>
-        <span className={styles.span}>WINE</span>
-        <span className={styles.span}>FOOD</span>
+      <label
+        htmlFor="toggle"
+        className={`${styles.label} ${
+          suggestions.length > 1 ? styles.hidden : ''
+        }`}
+      >
+        {/* git dank animation back */}
+        <span
+          className={`${styles.span} ${!searchByFood ? styles.checked : ''}`}
+        >
+          WINE
+        </span>
+        <span
+          className={`${styles.span} ${searchByFood ? styles.checked : ''}`}
+        >
+          FOOD
+        </span>
         <div
           className={`${styles.selected} ${searchByFood ? styles.move : ''}`}
-        >
-          {searchByFood ? 'FOOD' : 'WINE'}
-        </div>
+        ></div>
       </label>
     </div>
   );
