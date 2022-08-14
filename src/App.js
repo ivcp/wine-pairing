@@ -41,26 +41,21 @@ function App() {
         setQuery={setQuery}
       />
       <main>
-        <Random
-          searchByFood={searchByFood}
-          setPairings={setPairings}
-          setPairingText={setPairingText}
-          error={error}
-          setError={setError}
-          setRecError={setRecError}
-          setIsLoading={setIsLoading}
-          setRecommendations={setRecommendations}
-          setQuery={setQuery}
-        />
         <Pairings
-          pairings={pairings}
+          query={query}
           pairingText={pairingText}
+          pairings={pairings}
           isLoading={isLoading}
           onSetRecommendation={setRecommendations}
           setRecError={setRecError}
           setRecLoading={setRecIsLoading}
           searchByFood={searchByFood}
-          query={query}
+          setPairings={setPairings}
+          setPairingText={setPairingText}
+          error={error}
+          setError={setError}
+          setIsLoading={setIsLoading}
+          setQuery={setQuery}
         />
         <Recommendations
           recommendations={recommendations}
