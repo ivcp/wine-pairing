@@ -20,6 +20,11 @@
     background: url(../assets/waves-desktop.svg) center no-repeat;
     background-size: 250%;
     background-color: hsl(var(--color-primary-dark-orange));
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    align-items: end;
   }
 }
 
@@ -32,6 +37,8 @@
 @media (min-width: 37.5em) {
   .title {
     font-size: 4.8rem;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    grid-column: 1 / -1;
+    align-self: center;
   }
 }

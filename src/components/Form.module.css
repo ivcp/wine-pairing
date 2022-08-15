@@ -13,6 +13,8 @@
     transform: translateY(0);
     width: 39rem;
     height: 6.2rem;
+    grid-row: 2;
+    grid-column: 1 / -1;
   }
 }
 
@@ -45,6 +47,7 @@
 
 .input:focus {
   outline: none;
+  background-color: hsl(var(--color-primary-light-yellow) / 0.95);
 }
 
 .btn {
@@ -110,10 +113,19 @@
   background-color: hsl(var(--color-primary-light-yellow));
 }
 
+.suggestion:focus {
+  background-color: hsl(var(--color-primary-light-yellow-hover));
+}
+
 @media (min-width: 37.5em) {
   .suggestion {
     font-size: 1.2rem;
     padding: 1.2rem 1rem;
+    cursor: pointer;
+  }
+
+  .suggestion:hover {
+    background-color: hsl(var(--color-primary-light-yellow-hover));
   }
 }
 

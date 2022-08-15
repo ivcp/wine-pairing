@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Form from '../components/Form';
+import Random from '../components/Random';
 import Toggle from '../components/Toggle';
+import useMediaQuery from '../hooks/useMediaQuery';
 import styles from './Header.module.css';
 
 const Header = ({
@@ -16,6 +18,7 @@ const Header = ({
   setQuery
 }) => {
   const [suggestions, setSuggestions] = useState([]);
+  const isDesktop = useMediaQuery('(min-width: 37.5em)');
   const toggle = () => {
     setSearchByFood(prev => !prev);
   };
@@ -40,6 +43,19 @@ const Header = ({
         suggestions={suggestions}
         setSuggestions={setSuggestions}
       />
+      {isDesktop && (
+        <Random
+          searchByFood={searchByFood}
+          setPairings={setPairings}
+          setPairingText={setPairingText}
+          error={error}
+          setError={setError}
+          setRecError={setRecError}
+          setIsLoading={setIsLoading}
+          setRecommendations={setRecommendations}
+          setQuery={setQuery}
+        />
+      )}
     </header>
   );
 };
