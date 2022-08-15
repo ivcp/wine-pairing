@@ -153,7 +153,10 @@ const Form = ({
         autoComplete="off"
         onKeyDown={arrowNavigation}
       />
-      <button className={styles.btn} type="submit"></button>
+      <button
+        className={`${styles.btn} ${!searchByFood ? styles.food : ''}`}
+        type="submit"
+      ></button>
       {suggestions.length > 0 && (
         <ul className={styles.suggestions} role={'tablist'}>
           {suggestions.map(suggestion => (

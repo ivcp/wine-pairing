@@ -46,21 +46,26 @@ const Pairings = ({
         )}
       </div>
       {pairings.length > 0 && (
-        <ul>
-          {pairings.map(pairing => (
-            <Pairing
-              key={pairing}
-              value={pairing}
-              setRecommendation={onSetRecommendation}
-              searchByFood={searchByFood}
-              setError={setRecError}
-              isLoading={isLoading}
-              setIsLoading={setRecLoading}
-            >
-              {pairing}
-            </Pairing>
-          ))}
-        </ul>
+        <div className={styles.searchByTag}>
+          <p className={styles.tagsLabel}>
+            Get {searchByFood ? `recommendations` : `recipes`} for:
+          </p>
+          <ul className={styles.tags} role={'tablist'}>
+            {pairings.map(pairing => (
+              <Pairing
+                key={pairing}
+                value={pairing}
+                setRecommendation={onSetRecommendation}
+                searchByFood={searchByFood}
+                setError={setRecError}
+                isLoading={isLoading}
+                setIsLoading={setRecLoading}
+              >
+                {pairing}
+              </Pairing>
+            ))}
+          </ul>
+        </div>
       )}
       {isLoading && <p>Loading...</p>}
     </article>

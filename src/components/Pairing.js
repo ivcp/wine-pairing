@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Pairing.module.css';
 
 const Pairing = ({
   children,
@@ -49,6 +50,7 @@ const Pairing = ({
             wineRecommendation: false,
             items: recommendations
           });
+
       // TODO: filter response.results for title with space in front? 'Pike' problem
 
       setError({
@@ -65,7 +67,13 @@ const Pairing = ({
       });
     }
   };
-  return !isLoading && <li onClick={getRec.bind(null, value)}>{children}</li>;
+  return (
+    !isLoading && (
+      <li onClick={getRec.bind(null, value)} className={styles.pairing} tabIndex={0}>
+        {children}
+      </li>
+    )
+  );
 };
 
 export default Pairing;

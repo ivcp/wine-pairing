@@ -7,7 +7,7 @@
 
 @media (min-width: 37.5em) {
   .toggle {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     grid-row: 3;
     grid-column: 1;
     justify-self: right;

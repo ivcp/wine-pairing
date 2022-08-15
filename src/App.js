@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import Form from './components/Form';
 import Pairings from './components/Pairings';
 import Recommendations from './components/Recommendations';
-import Toggle from './components/Toggle';
-import Random from './components/Random';
 import Header from './layout/Header';
 
 function App() {

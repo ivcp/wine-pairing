@@ -2,11 +2,23 @@
   margin-inline: 10%;
 }
 
+@media (min-width: 37.5em) {
+  .pairings {
+    margin-inline: auto;
+    max-width: 63.2rem;
+  }
+}
+
 .result {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
+}
+
+@media (min-width: 37.5em) {
+  .result {
+  }
 }
 
 .title {
@@ -18,6 +30,12 @@
   color: hsl(var(--color-text));
 }
 
+@media (min-width: 37.5em) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
 .text {
   margin-top: 1rem;
   font-size: 1.4rem;
@@ -25,6 +43,49 @@
   color: hsl(var(--color-text));
 }
 
+@media (min-width: 37.5em) {
+  .text {
+    font-size: 1.8rem;
+  }
+}
+
 .line {
   width: 100%;
+  margin-top: 1rem;
+}
+
+.searchByTag {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 37.5em) {
+  .searchByTag {
+    text-align: left;
+  }
+}
+
+.tagsLabel {
+  color: hsl(var(--color-text));
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 37.5em) {
+  .tagsLabel {
+    font-size: 1.2rem;
+  }
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (min-width: 37.5em) {
+  .tags {
+    justify-content: flex-start;
+  }
 }

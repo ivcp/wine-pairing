@@ -1,4 +1,4 @@
-.mobileDice {
+.dice {
   height: 2.4rem;
   width: 2.4rem;
   border: none;
@@ -7,10 +7,10 @@
   transition: transform 0.2s;
 }
 @media (min-width: 37.5em) {
-  .mobileDice {
+  .dice {
     height: 3.4rem;
     width: 3.4rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     grid-row: 3;
     justify-self: left;
     margin-left: 3rem;
@@ -19,11 +19,11 @@
     transition: fill 0.2s;
   }
 
-  .mobileDice:hover {
+  .dice:hover {
     fill: hsl(var(--color-primary-dark-red));
   }
 }
 
-.mobileDice:active {
+.dice:active {
   transform: translateY(1px);
 }

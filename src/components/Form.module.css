@@ -56,6 +56,12 @@
   height: 100%;
   background: url('../assets/bottle-mobile.svg') center no-repeat;
   background-color: hsl(var(--color-primary-red));
+  transition: background 0.2s;
+}
+
+.btn.food {
+  background: url('../assets/food-mobile.svg') center no-repeat;
+  background-color: hsl(var(--color-primary-red));
 }
 
 @media (min-width: 37.5em) {
@@ -64,6 +70,11 @@
     background-color: hsl(var(--color-primary-red));
     cursor: pointer;
     transition: background-color 0.2s;
+  }
+
+  .btn.food {
+    background: url('../assets/food-desktop.svg') center no-repeat;
+    background-color: hsl(var(--color-primary-red));
   }
 
   .btn:hover {

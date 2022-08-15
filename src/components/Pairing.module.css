@@ -1,0 +1,25 @@
+.pairing {
+  padding: 0.6rem 1.4rem;
+  background-color: hsl(var(--color-primary-red));
+  text-transform: uppercase;
+  font-weight: 900;
+  color: hsl(var(--color-light-grey));
+  font-size: 1.2rem;
+  transition: background-color 0.2s;
+}
+
+.pairing:focus {
+  background-color: hsl(var(--color-primary-orange));
+}
+
+@media (min-width: 37.5em) {
+  .pairing {
+    padding: 0.6rem 1.8rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  .pairing:hover {
+    background-color: hsl(var(--color-primary-dark-red));
+  }
+}

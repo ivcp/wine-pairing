@@ -68,7 +68,7 @@ const Random = ({
   // }, []);
 
   return (
-    <button className={styles.mobileDice} onClick={getRandomPairing}>
+    <button className={styles.dice} onClick={getRandomPairing}>
       {isDesktop && (
         <svg
           width="34"
