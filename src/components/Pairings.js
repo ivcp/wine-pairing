@@ -47,7 +47,9 @@ const Pairings = ({
       </div>
       {pairings.length > 0 && (
         <div className={styles.searchByTag}>
-          <p className={styles.tagsLabel}>Get recommendations for:</p>
+          {!isLoading && (
+            <p className={styles.tagsLabel}>Get recommendations for:</p>
+          )}
           <ul className={styles.tags} role={'tablist'}>
             {pairings.map(pairing => (
               <Pairing
@@ -65,7 +67,7 @@ const Pairings = ({
           </ul>
         </div>
       )}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <div className={styles.loader}></div>}
     </article>
   );
 };

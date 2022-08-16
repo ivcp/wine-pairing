@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import addDashes from '../helpers/addDashes';
 import styles from './Recommendations.module.css';
+import stylesP from './Pairings.module.css';
 
 const Recommendations = ({ recommendations, error, isLoading }) => {
   const recRef = useRef(null);
@@ -37,7 +38,7 @@ const Recommendations = ({ recommendations, error, isLoading }) => {
         ))}
 
       {error.error && !isLoading && <p>{error.message}</p>}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <div className={stylesP.loader}></div>}
     </div>
   );
 };
