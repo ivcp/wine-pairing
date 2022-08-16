@@ -47,9 +47,7 @@ const Pairings = ({
       </div>
       {pairings.length > 0 && (
         <div className={styles.searchByTag}>
-          <p className={styles.tagsLabel}>
-            Get {searchByFood ? `recommendations` : `recipes`} for:
-          </p>
+          <p className={styles.tagsLabel}>Get recommendations for:</p>
           <ul className={styles.tags} role={'tablist'}>
             {pairings.map(pairing => (
               <Pairing

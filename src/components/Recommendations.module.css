@@ -1,0 +1,51 @@
+.recommendations {
+  margin-top: 4.5rem;
+  margin-inline: 10%;
+  display: flex;
+  gap: 2rem;
+  overflow: auto;
+  white-space: nowrap;
+  margin-bottom: 50rem;
+}
+
+@media (min-width: 37.5em) {
+  .recommendations {
+    margin-inline: auto;
+    max-width: 63.2rem;
+    margin-top: 10rem;
+  }
+}
+
+.recommendation {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.recommendation > img {
+  max-width: 8rem;
+  max-height: 8rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 37.5em) {
+  .recommendation > img {
+    max-width: 12rem;
+    max-height: 12rem;
+  }
+}
+
+.recommendation > h2 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: center;
+  white-space: pre-wrap;
+  color: hsl(var(--color-text));
+}
+
+@media (min-width: 37.5em) {
+  .recommendation:hover > h2 {
+    color: hsl(var(--color-primary-dark-red));
+  }
+}
