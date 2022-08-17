@@ -13,27 +13,23 @@ const fetchData = async (query, searchByFood) => {
     );
 
     if (data.status === 400) {
-      //e.target.reset();
       const response = await data.json();
       throw new Error(response.body.message);
     }
 
     if (data.status === 402) {
-      //e.target.reset();
       throw new Error(
         'Sorry, no more food and wine matching today. API limit reached.'
       );
     }
 
     if (!data.ok) {
-      //e.target.reset();
       throw new Error(
         `Failed to get ${searchByFood ? 'wine' : 'food'} pairing, sorry.`
       );
     }
     const { data: response } = await data.json();
     if (response.status === 'failure') {
-      //e.target.reset();
       throw new Error(response.message);
     }
     let pairingsArray;
@@ -49,13 +45,11 @@ const fetchData = async (query, searchByFood) => {
       textString = text;
     }
     if (pairingsArray.length === 0 && textString === '') {
-      //e.target.reset();
       throw new Error(
         `Cannot not find any match for ${query}. Try something else!`
       );
     }
 
-    //e.target.reset();
     return {
       error: false,
       loading: false,

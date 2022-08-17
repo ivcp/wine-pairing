@@ -21,7 +21,6 @@ const Toggle = ({ searchByFood, toggleSearch, suggestions }) => {
           suggestions.length > 1 ? styles.hidden : ''
         }`}
       >
-        {/* git dank animation back */}
         <span
           className={`${styles.span} ${!searchByFood ? styles.checked : ''}`}
         >

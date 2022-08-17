@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import fetchData from '../helpers/fetchData';
 import foodList from '../lists/foodList';
 import wineList from '../lists/wineList';

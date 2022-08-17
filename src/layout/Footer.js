@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <a href="https://twitter.com/iv_p_">
-        <Svg style={{ fill: 'green' }} />
+        <Svg />
       </a>
     </div>
   );

@@ -51,8 +51,6 @@ const Pairing = ({
             items: recommendations
           });
 
-      // TODO: filter response.results for title with space in front? 'Pike' problem
-
       setError({
         error: false,
         message: ''
@@ -69,7 +67,11 @@ const Pairing = ({
   };
   return (
     !isLoading && (
-      <li onClick={getRec.bind(null, value)} className={styles.pairing} tabIndex={0}>
+      <li
+        onClick={getRec.bind(null, value)}
+        className={styles.pairing}
+        tabIndex={0}
+      >
         {children}
       </li>
     )
