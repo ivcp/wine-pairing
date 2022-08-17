@@ -1,9 +1,7 @@
 import React from 'react';
-import fetchData from '../helpers/fetchData';
-import wineList from '../lists/wineList';
-import foodList from '../lists/foodList';
-import getRandomNum from '../helpers/getRandomNum';
+
 import useMediaQuery from '../hooks/useMediaQuery';
+import getRandomPairing from '../helpers/getRandomPairing';
 import styles from './Random.module.css';
 
 const Random = ({
@@ -17,24 +15,21 @@ const Random = ({
   setQuery
 }) => {
   const isDesktop = useMediaQuery('(min-width: 37.5em)');
-  const getRandomPairing = async () => {
+
+  const randomBtnHandler = async () => {
     setIsLoading(true);
-    let query;
-    searchByFood
-      ? (query = foodList[getRandomNum(foodList.length)])
-      : (query = wineList[getRandomNum(wineList.length)]);
+    const result = await getRandomPairing(searchByFood);
 
-    const fetchResult = await fetchData(query, searchByFood);
-
-    if (!fetchResult.error) {
+    if (!result.error) {
       const {
         error,
         loading,
         pairings,
         pairingText,
         wineRecommendation,
-        items
-      } = fetchResult;
+        items,
+        query
+      } = result;
 
       setError({ error: error, message: '' });
       setIsLoading(loading);
@@ -51,9 +46,8 @@ const Random = ({
       });
     }
 
-    if (fetchResult.error) {
-      const { error, message, loading } = fetchResult;
-
+    if (result.error) {
+      const { error, message, loading } = result;
       setIsLoading(loading);
       setError({
         error: error,
@@ -62,13 +56,9 @@ const Random = ({
     }
   };
 
-  //ON MOUNT GET RANDOM PAIRING: import useEff
-  // useEffect(() => {
-  //   getRandomPairing();
-  // }, []);
 
   return (
-    <button className={styles.dice} onClick={getRandomPairing}>
+    <button className={styles.dice} onClick={randomBtnHandler}>
       {isDesktop && (
         <svg
           width="34"

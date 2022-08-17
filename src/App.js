@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pairings from './components/Pairings';
 import Recommendations from './components/Recommendations';
+import Footer from './layout/Footer';
 import Header from './layout/Header';
+import getRandomPairing from './helpers/getRandomPairing';
+import styles from './App.module.css';
 
 function App() {
   const [searchByFood, setSearchByFood] = useState(true);
@@ -23,8 +26,51 @@ function App() {
   });
   const [recIsLoading, setRecIsLoading] = useState(false);
 
+  useEffect(() => {
+    console.log('effect running');
+    async function fetchRandomPairing() {
+      setIsLoading(true);
+      const result = await getRandomPairing(searchByFood);
+      if (!result.error) {
+        const {
+          error,
+          loading,
+          pairings,
+          pairingText,
+          wineRecommendation,
+          items,
+          query
+        } = result;
+
+        setError({ error: error, message: '' });
+        setIsLoading(loading);
+        setPairings(pairings);
+        setPairingText(pairingText);
+        setRecommendations({
+          wineRecommendation: wineRecommendation,
+          items: items
+        });
+        setQuery(query);
+        setRecError({
+          error: false,
+          message: ''
+        });
+      }
+
+      if (result.error) {
+        const { error, message, loading } = result;
+        setIsLoading(loading);
+        setError({
+          error: error,
+          message: message
+        });
+      }
+    }
+    fetchRandomPairing();
+  }, []);
+
   return (
-    <>
+    <div className={styles.app}>
       <Header
         searchByFood={searchByFood}
         setSearchByFood={setSearchByFood}
@@ -61,7 +107,8 @@ function App() {
           isLoading={recIsLoading}
         />
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 

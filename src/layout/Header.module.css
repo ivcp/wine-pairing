@@ -11,7 +11,7 @@
 
 @media (min-width: 37.5em) {
   .header {
-    max-width: 63.2rem;
+    width: 63.2rem;
     height: 31.4rem;
     margin-top: 3rem;
     margin-inline: auto;

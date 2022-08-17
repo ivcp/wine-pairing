@@ -29,6 +29,7 @@ html {
 body {
   font-family: 'Merriweather', serif;
   background-color: hsl(var(--color-background));
+  min-height: 100vh;
 }
 
 img,
