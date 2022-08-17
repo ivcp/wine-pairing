@@ -10,4 +10,4 @@ Users can:
 
 Project made with Create React App, CSS modules for styling, Netlify functions
 
-[Live Site URL](https://google.com)
+[Live Site URL](https://food-and-wine.netlify.app/)
