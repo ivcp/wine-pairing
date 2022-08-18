@@ -107,6 +107,7 @@ const Form = ({
         return;
       }
       textInput.current.focus();
+      textInput.current.value = '';
       setSuggestions([]);
     }
   };

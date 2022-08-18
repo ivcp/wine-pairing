@@ -5,7 +5,11 @@ import styles from './Footer.module.css';
 const Footer = () => {
   return (
     <div className={styles.footer}>
-      <a href="https://twitter.com/iv_p_">
+      <a
+        href="https://twitter.com/iv_p_"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Svg />
       </a>
     </div>

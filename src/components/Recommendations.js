@@ -25,6 +25,8 @@ const Recommendations = ({ recommendations, error, isLoading }) => {
                 ? rec.link
                 : `https://spoonacular.com/${addDashes(rec.title)}-${rec.id}`
             }
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {' '}
             <img
