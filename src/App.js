@@ -27,7 +27,6 @@ function App() {
   const [recIsLoading, setRecIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log('effect running');
     async function fetchRandomPairing() {
       setIsLoading(true);
       const result = await getRandomPairing(searchByFood);
