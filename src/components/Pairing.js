@@ -70,6 +70,7 @@ const Pairing = ({
       <li
         onClick={getRec.bind(null, value)}
         className={styles.pairing}
+        role={'tab'}
         tabIndex={0}
       >
         {children}

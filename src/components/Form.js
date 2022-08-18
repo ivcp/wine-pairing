@@ -157,7 +157,9 @@ const Form = ({
       <button
         className={`${styles.btn} ${!searchByFood ? styles.food : ''}`}
         type="submit"
-      ></button>
+      >
+        <span className={styles.srOnly}>Search</span>
+      </button>
       {suggestions.length > 0 && (
         <ul className={styles.suggestions} role={'tablist'}>
           {suggestions.map(suggestion => (
